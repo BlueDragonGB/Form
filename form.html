@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+   <p id = "fillFirstname" Style="color: red; display: none;">Please fill in firstname.</p>
+   <p id = "fillSurname" Style="color: red; display: none;">Please fill in surname.</p>
+ 
+<form id="infoForm" action="form_action.php" method="post">
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+        </tr>
+        
+        <tr>
+            <td><input type="text" name="people[][firstname]" value="{{ person.firstname }}" /></td>
+            <td><input type="text" name="people[][surname]" value="{{ person.surname }}" /></td>
+            
+        </tr>
+        
+    </table>
+    <input type="button" name="formSubmit" onclick="formCheck()" value="OK" />
+</form>
+
+<script>
+    function formCheck(){
+        var Sub=true;
+        if(document.getElementsByName("people[][firstname]")[0].value=="{{ person.firstname }}"){
+            document.getElementById("fillFirstname").style.display="block";
+            Sub=false;
+        }
+        if(document.getElementsByName("people[][surname]")[0].value=="{{ person.surname }}"){
+            document.getElementById("fillSurname").style.display="block";
+            Sub=false;
+        }
+        if(Sub==true){
+            document.getElementById("infoForm").submit();
+        } 
+    }
+</script>
+
+</html>
